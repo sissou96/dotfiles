@@ -1,0 +1,21 @@
+rofi.fullscreen: true
+rofi.color-enabled: true
+
+! Property Name     BG       Border   Separator
+rofi.color-window:  #3b4252, #3b4252, #2e3440
+
+! Property Name     BG       FG       BG-alt   Head-BG  Head-FG
+rofi.color-normal:  #3b4252, #e5e9f0, #3b4252, #3b4252, #8fbcbb
+rofi.color-active:  #3b4252, #ebcb8b, #3b4252, #3b4252, #ebcb8b
+rofi.color-urgent:  #3b4252, #88c0d0, #3b4252, #3b4252, #88c0d0
+
+rofi.font: Monaco 14
+rofi.eh: 1
+rofi.line-margin: 20
+rofi.separator-style: solid
+rofi.hide-scrollbar: true
+rofi.lines: 3
+rofi.width: 100
+rofi.padding: 200
+rofi.bw: 0
+rofi.show-icons: true

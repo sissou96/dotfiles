@@ -10,6 +10,7 @@
 !.config/gtk-3.0/*
 !.config/slim
 !.config/slim/*
+!.config/slim/slim.conf
 !.config/slim/themes
 !.config/slim/themes/*
 !.config/slim/themes/slim-hud
@@ -24,3 +25,4 @@
 !.spacemacs
 !.tmux.conf
 !.gitignore
+!Makefile

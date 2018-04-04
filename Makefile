@@ -5,25 +5,34 @@ all: update i3-gaps polybar rofi hydrate-dotfiles slim
 update:
 	sudo apt-get update
 
-i3-gaps:
+ifeq ($(DISTRO),Ubuntu)
+	sudo add-apt-repository ppa:aguignard/ppa
+	sudo apt-get update
+	sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm-dev
+else
 	sudo apt-get install -y libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev
-	mkdir -p temp
-	cd temp
-	git clone https://www.github.com/Airblader/i3 i3-gaps
-	cd i3-gaps
-	autoreconf --force --install
-	rm -rf build/
-	mkdir -p build && cd build/
-	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-	make
+endif
+
+i3-gaps:
+	mkdir -p temp && \
+	cd temp && \
+	git clone https://www.github.com/Airblader/i3 i3-gaps && \
+	cd i3-gaps && \
+	autoreconf --force --install && \
+	rm -rf build/ && \
+	mkdir -p build && cd build/ && \
+	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers && \
+	make && \
 	sudo make install
 
 polybar:
-	sudo apt-get install cairo libxcb python2 xcb-proto gcc xcb-util-image xcb-util-wm xcb-util-xrm alsa-lib libpulse jsoncpp
-	mkdir -p temp && cd temp/
-	git clone --branch 3.1.0 --recursive https://github.com/jaagr/polybar
-	cd polybar
-	.build.sh
+	sudo apt-get install -y python-xcbgen libxcb-ewmh-dev libxcb-icccm4-dev libxcb1-dev \
+	xcb-proto libxcb-util-dev libxcb-image0-dev libxcb-randr0-dev libxcb-xkb-dev \
+	libalsaplayer-dev wireless-tools libcurlpp-dev libcairo2-dev
+	mkdir -p temp && cd temp/ && \
+	git clone --branch 3.1.0 --recursive https://github.com/jaagr/polybar && \
+	cd polybar && \
+	./build.sh
 
 rofi:
 	sudo apt-get install rofi
@@ -53,7 +62,7 @@ hydrate-dotfiles:
 	ln -fs $(DOTFILES)/.gitignore $(HOME)/.gitignore
 	mkdir -p $(HOME)/.config
 	ln -fs $(DOTFILES)/.config/i3 $(HOME)/.config/i3
-	ln -fs $(dotfiles)/.config/rofi $(home)/.config/rofi
-	ln -fs $(dotfiles)/.config/polybar $(home)/.config/polybar
-	ln -fs $(dotfiles)/.config/gtk-3.0 $(home)/.config/gtk-3.0
-	ln -fs $(dotfiles)/.config/slim $(home)/.config/slim
+	ln -fs $(DOTFILES)/.config/rofi $(HOME)/.config/rofi
+	ln -fs $(DOTFILES)/.config/polybar $(HOME)/.config/polybar
+	ln -fs $(DOTFILES)/.config/gtk-3.0 $(HOME)/.config/gtk-3.0
+	ln -fs $(DOTFILES)/.config/slim $(HOME)/.config/slim

@@ -205,7 +205,7 @@ gaps outer 5
 smart_gaps on
 smart_borders on
 
-exec $HOME/.screenlayout/business_setup.sh
+exec $HOME/.screenlayout/business_setup.sh 1440x600
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c566a #4c566a #d8dee9 #88c0d0   #4c566a

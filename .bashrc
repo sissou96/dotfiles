@@ -114,6 +114,7 @@ alias activate="source env/bin/activate"
 alias i3config="nvim $HOME/.config/i3/config"
 alias steam="playonlinux --run Steam"
 alias cljs="clj -m cljs.main"
+alias nosetests="nosetests --exe"
 
 export EDITOR="nvim"
 

@@ -26,3 +26,5 @@
 !.tmux.conf
 !.gitignore
 !Makefile
+!.screenlayout
+!.screenlayout/business_layout.sh

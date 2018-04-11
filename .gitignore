@@ -27,4 +27,4 @@
 !.gitignore
 !Makefile
 !.screenlayout
-!.screenlayout/business_layout.sh
+!.screenlayout/*
